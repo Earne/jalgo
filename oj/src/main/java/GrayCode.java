@@ -30,5 +30,5 @@ public class GrayCode {
         return result;
     }
 
-    // TODO 
+    // TODO
 }
