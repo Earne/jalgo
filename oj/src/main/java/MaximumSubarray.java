@@ -25,4 +25,6 @@ public class MaximumSubarray {
 
         return front[l - 1];
     }
+
+    // TODO better one
 }
