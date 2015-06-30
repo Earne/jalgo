@@ -2,9 +2,6 @@ import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 
-/**
- * Created by earne on 6/30/15.
- */
 public class FactorialTrailingZeroesTest {
 
     @Test(timeout = 500)
