@@ -49,4 +49,24 @@ public class AddBinary {
             sb.insert(0, '1');
         return sb.toString();
     }
+
+    public String addBinary2(String a, String b) {
+        StringBuilder result = new StringBuilder();
+        int m = a.length() - 1;
+        int n = b.length() - 1;
+        int tmp = 0;
+        while (m >= 0 || n >= 0) {
+            if (m >= 0)
+                tmp += a.charAt(m) - '0';
+            if (n >= 0)
+                tmp += b.charAt(n) - '0';
+            result.insert(0, tmp % 2);
+            tmp /= 2;
+            m--;
+            n--;
+        }
+        if (tmp == 1)
+            result.insert(0, '1');
+        return result.toString();
+    }
 }
