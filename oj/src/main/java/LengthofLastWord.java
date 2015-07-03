@@ -36,4 +36,9 @@ public class LengthofLastWord {
         }
         return q - p;
     }
+
+    public int lengthOfLastWord3(String s) {
+        String[] arr = s.trim().split(" ");
+        return arr[arr.length - 1].length();
+    }
 }
