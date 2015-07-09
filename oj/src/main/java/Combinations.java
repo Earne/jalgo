@@ -17,9 +17,24 @@ import java.util.List;
  * ]
  */
 public class Combinations {
+    List<List<Integer>> result = new ArrayList<List<Integer>>();
+
     public List<List<Integer>> combine(int n, int k) {
-        List<List<Integer>> result = new ArrayList<List<Integer>>();
-// TODO
+        helper(n, k, 1, new ArrayList<Integer>());
         return result;
     }
+
+    private void helper(int n, int k, int beg, ArrayList<Integer> integers) {
+        if (k == 0) {
+            result.add(new ArrayList<Integer>(integers));
+            return;
+        }
+        for (int i = beg; i <= n; i++) {
+            integers.add(i);
+            helper(n, k - 1, i + 1, integers);
+            integers.remove(integers.size() - 1);
+        }
+    }
+
+    // TODO add recursive Java solution based on C(n,k)=C(n-1,k-1)+C(n-1,k)
 }
