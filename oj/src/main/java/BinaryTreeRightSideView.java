@@ -42,4 +42,22 @@ public class BinaryTreeRightSideView {
         }
         return result;
     }
+
+    // recursive solution
+
+    public List<Integer> rightSideView2(TreeNode root) {
+        List<Integer> result = new ArrayList<Integer>();
+        helper(result, root, 0);
+        return result;
+    }
+
+    private void helper(List<Integer> result, TreeNode node, int level) {
+        if (node == null)
+            return;
+        if (level == result.size())
+            result.add(node.val);
+        helper(result, node.right, level + 1);
+        helper(result, node.left, level + 1);
+    }
+
 }

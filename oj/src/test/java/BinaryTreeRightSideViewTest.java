@@ -14,5 +14,8 @@ public class BinaryTreeRightSideViewTest {
         BinaryTreeRightSideView s = new BinaryTreeRightSideView();
         assertEquals(Arrays.asList(new Integer[]{1, 3, 4}), s.rightSideView(a.getRoot()));
         assertEquals(Arrays.asList(new Integer[]{1, 3, 4}), s.rightSideView(b.getRoot()));
+
+        assertEquals(Arrays.asList(new Integer[]{1, 3, 4}), s.rightSideView2(a.getRoot()));
+        assertEquals(Arrays.asList(new Integer[]{1, 3, 4}), s.rightSideView2(b.getRoot()));
     }
 }
