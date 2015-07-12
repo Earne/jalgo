@@ -12,8 +12,8 @@ import java.util.ArrayList;
 public class ValidateBinarySearchTree {
     ArrayList<Integer> inOrder = new ArrayList<Integer>();
 
-    public boolean isValidBST(TreeNode root) {
-        helper(root);
+    public boolean isValidBST2(TreeNode root) {
+        helper2(root);
         for (int i = 1; i < inOrder.size(); i++) {
             if (inOrder.get(i) <= inOrder.get(i - 1))
                 return false;
@@ -21,11 +21,21 @@ public class ValidateBinarySearchTree {
         return true;
     }
 
-    private void helper(TreeNode node) {
+    private void helper2(TreeNode node) {
         if (node == null)
             return;
-        helper(node.left);
+        helper2(node.left);
         inOrder.add(node.val);
-        helper(node.right);
+        helper2(node.right);
+    }
+
+    public boolean isValidBST(TreeNode root) {
+        return helper(root, null, null);
+    }
+
+    private boolean helper(TreeNode node, TreeNode min, TreeNode max) {
+        return (node == null) || !(min != null && node.val <= min.val) && !(max != null && node.val
+                >= max.val) && helper(node.left, min, node) && helper
+                (node.right, node, max);
     }
 }
