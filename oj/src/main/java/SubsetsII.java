@@ -44,4 +44,6 @@ public class SubsetsII {
             curList.remove(curList.size() - 1);
         }
     }
+
+    // TODO add bit manipulation solution
 }
