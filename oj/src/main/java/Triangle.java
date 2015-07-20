@@ -40,4 +40,6 @@ public class Triangle {
                 res = i;
         return res;
     }
+
+    // TODO better solution
 }
