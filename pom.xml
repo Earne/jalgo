@@ -23,6 +23,8 @@
   <modules>
     <module>leetcode</module>
     <module>common</module>
+    <module>jzoffer</module>
+    <module>cc</module>
   </modules>
   <packaging>pom</packaging>
 
