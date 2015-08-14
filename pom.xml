@@ -27,6 +27,7 @@
     <module>jzoffer</module>
     <module>cc</module>
     <module>writtenexam</module>
+    <module>lintcode</module>
   </modules>
   <packaging>pom</packaging>
 
