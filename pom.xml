@@ -24,7 +24,6 @@
   <modules>
     <module>leetcode</module>
     <module>common</module>
-    <module>jzoffer</module>
     <module>cc</module>
     <module>writtenexam</module>
     <module>lintcode</module>
