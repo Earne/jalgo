@@ -29,5 +29,46 @@ public class ImplementstrStr {
         return -1;
     }
 
-    // TODO add KMP Version
+    // KMP Version
+    public int strStr3(String haystack, String needle) {
+        int res = -1;
+        if (needle == null || needle.length() == 0)
+            return -1;
+
+        int[] next = new int[needle.length() + 1];
+        next[1] = 0;
+        // calculate the next array
+        int i = 1, j = 0;
+        while (i < needle.length()) {
+            if (j == 0 || needle.charAt(i - 1) == needle.charAt(j - 1)) {
+                ++i;
+                ++j;
+                // optimize
+                if (needle.charAt(i - 1) == needle.charAt(j - 1)) {
+                    next[i] = next[j];
+                } else {
+                    next[i] = j;
+                }
+            } else {
+                j = next[j];
+            }
+        }
+
+        // KMP
+        i = 1;
+        j = 1;
+        while (i <= haystack.length() && j <= needle.length()) {
+            if (j == 0 || haystack.charAt(i - 1) == needle.charAt(j - 1)) {
+                ++i;
+                ++j;
+            } else {
+                j = next[j];
+            }
+        }
+
+        if (j > needle.length())
+            return i - j;
+        return res;
+    }
+
 }
