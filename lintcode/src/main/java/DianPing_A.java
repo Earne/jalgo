@@ -1,3 +1,4 @@
+import java.math.BigDecimal;
 import java.util.Scanner;
 
 /**
@@ -7,12 +8,19 @@ public class DianPing_A {
     public static void main(String[] args) {
         Scanner cin = new Scanner(System.in);
         int n = cin.nextInt();
-        System.out.println(helper(n));
+        BigDecimal bn = new BigDecimal(n);
+        System.out.println(helper(bn));
     }
 
-    private static int helper(int n) {
-        if (n == 0)
-            return 1;
-        return n * helper(n - 1);
+    private static BigDecimal helper(BigDecimal bn) {
+        if (bn.intValue() == 0)
+            return new BigDecimal(1);
+        return bn.multiply(helper(bn.subtract(new BigDecimal(1))));
     }
+
+//    private static long helper(long n) {
+//        if (n == 0)
+//            return 1;
+//        return n * helper(n - 1);
+//    }
 }
