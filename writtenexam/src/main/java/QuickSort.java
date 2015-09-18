@@ -1,7 +1,7 @@
 /**
  * Created by earne on 9/9/15.
  */
-public class SortAlgs {
+public class QuickSort {
     public static void quickSort(int[] arr) {
         quickSort(arr, 0, arr.length - 1);
     }
