@@ -9,5 +9,6 @@ public class LongestCommonSubstringTest {
         LongestCommonSubstring s = new LongestCommonSubstring();
         assertEquals(2, s.longestCommonSubstring("ABCD", "CBCE"));
         assertEquals(4, s.longestCommonSubstring("ABCDEFGHIJ", "CBCEBCDEABC"));
+        assertEquals(4, s.longestCommonSubstring("aaabbbbccc", "aaacccbbbb"));
     }
 }
