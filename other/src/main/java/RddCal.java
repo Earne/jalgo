@@ -66,9 +66,9 @@ public class RddCal {
                     int rddName = Integer.parseInt(str.substring(rddNameBeg + 4, rddNameEnd - 1));
                     rddCount.put(rddName, 0);
                 }
-
-
             }
+            // the last time
+            System.out.println(preTime + " " + rddCount.values());
             fileReader.close();
             br.close();
         } catch (IOException e) {
