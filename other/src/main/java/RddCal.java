@@ -6,7 +6,8 @@ import java.util.TreeMap;
 
 /**
  * 统计spark的log中RDD数目的变化，分析的文件是经过“grep rdd_" 后得到的文件
- * 本例中各RDD的编号为3\9\18……，行中有Added表示有rdd增加，否则表示有rdd被remove
+ * 本例中各RDD的编号为3\9\18……，行中有Added表示有rdd增加，有Removed表示有rdd被remove
+ * 有Removing表示某rdd全部被删除
  */
 public class RddCal {
     public static void main(String[] args) {
@@ -41,23 +42,31 @@ public class RddCal {
                 }
                 preTime = curTime;
 
-                int rddNameBeg = str.indexOf("_");
-                int rddNameEnd = str.lastIndexOf("_");
-                int rddName = Integer.parseInt(str.substring(rddNameBeg + 1, rddNameEnd));
-                boolean isAdd = str.contains("Added");
-                if (isAdd) {
-                    if (rddCount.containsKey(rddName)) {
-                        rddCount.put(rddName, rddCount.get(rddName) + 1);
+                if (!str.contains("Removing")) {
+                    int rddNameBeg = str.indexOf("_");
+                    int rddNameEnd = str.lastIndexOf("_");
+                    int rddName = Integer.parseInt(str.substring(rddNameBeg + 1, rddNameEnd));
+                    boolean isAdd = str.contains("Added");
+                    if (isAdd) {
+                        if (rddCount.containsKey(rddName)) {
+                            rddCount.put(rddName, rddCount.get(rddName) + 1);
+                        } else {
+                            rddCount.put(rddName, 1);
+                        }
                     } else {
-                        rddCount.put(rddName, 1);
+                        if (rddCount.containsKey(rddName)) {
+                            rddCount.put(rddName, rddCount.get(rddName) - 1);
+                        } else {
+                            throw new IllegalArgumentException();
+                        }
                     }
-                } else {
-                    if (rddCount.containsKey(rddName)) {
-                        rddCount.put(rddName, rddCount.get(rddName) - 1);
-                    } else {
-                        throw new IllegalArgumentException();
-                    }
+                } else if (str.contains("from")) {
+                    int rddNameBeg = str.indexOf("RDD ");
+                    int rddNameEnd = str.lastIndexOf("from");
+                    int rddName = Integer.parseInt(str.substring(rddNameBeg + 4, rddNameEnd - 1));
+                    rddCount.put(rddName, 0);
                 }
+
 
             }
             fileReader.close();
