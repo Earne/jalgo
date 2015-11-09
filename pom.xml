@@ -27,6 +27,7 @@
     <module>cc</module>
     <module>writtenexam</module>
     <module>lintcode</module>
+    <module>other</module>
   </modules>
   <packaging>pom</packaging>
 
