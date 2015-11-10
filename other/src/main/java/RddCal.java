@@ -44,7 +44,11 @@ public class RddCal {
 
                 curTime = sdf.parse(str.substring(0, 21));
                 if (preTime != null && !curTime.equals(preTime)) {
-                    System.out.println(sdf.format(preTime) + " " + curStamp + " " + rddCount.values());
+                    System.out.print(sdf.format(preTime) + " " + curStamp + " ");
+                    for (Integer i : rddCount.values()) {
+                        System.out.print(i + " ");
+                    }
+                    System.out.println();
                     curStamp += curTime.getTime() - preTime.getTime();
                 }
                 preTime = curTime;
@@ -75,7 +79,10 @@ public class RddCal {
                 }
             }
             // the last time
-            System.out.println(sdf.format(preTime) + " " + curStamp + " " + rddCount.values());
+            System.out.print(sdf.format(preTime) + " " + curStamp + " ");
+            for (Integer i : rddCount.values()) {
+                System.out.print(i + " ");
+            }
             fileReader.close();
             br.close();
         } catch (IOException | ParseException e) {
