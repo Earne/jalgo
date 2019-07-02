@@ -24,6 +24,7 @@
   <modules>
 
     <module>leetcode</module>
+    <module>common</module>
   </modules>
   <packaging>pom</packaging>
 
