@@ -11,5 +11,7 @@ public class PathSumTest {
         PathSum s = new PathSum();
         assertEquals(true, s.hasPathSum(b.getRoot(), 2));
         assertEquals(true, s.hasPathSum2(b.getRoot(), 2));
+        assertEquals(true, s.hasPathSum3(b.getRoot(), 2));
+        assertEquals(true, s.hasPathSum4(b.getRoot(), 2));
     }
 }

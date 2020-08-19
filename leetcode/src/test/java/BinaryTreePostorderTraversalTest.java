@@ -1,7 +1,9 @@
 import org.junit.Test;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Stack;
 
 import static org.junit.Assert.*;
 
@@ -19,5 +21,13 @@ public class BinaryTreePostorderTraversalTest {
         BinaryTreePostorderTraversal s = new BinaryTreePostorderTraversal();
         assertEquals(l1, s.postorderTraversal1(b1.getRoot()));
         assertEquals(l1, s.postorderTraversal(b1.getRoot()));
+    }
+
+    private List<Integer> foo(TreeNode root) {
+        List<Integer> res = new ArrayList<>();
+        Stack<TreeNode> stack = new Stack<>();
+
+
+        return res;
     }
 }

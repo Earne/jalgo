@@ -28,6 +28,8 @@
     <module>writtenexam</module>
     <module>lintcode</module>
     <module>other</module>
+      <module>condinginterview2</module>
+      <module>jzoffer</module>
   </modules>
   <packaging>pom</packaging>
 

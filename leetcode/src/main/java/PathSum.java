@@ -1,3 +1,5 @@
+import java.util.Stack;
+
 /**
  * Given a binary tree and a sum,
  * determine if the tree has a root-to-leaf path such that
@@ -43,4 +45,45 @@ public class PathSum {
             return root.val == sum;
         return (hasPathSum2(root.left, sum - root.val) || hasPathSum2(root.right, sum - root.val));
     }
+
+    public boolean hasPathSum3(TreeNode root, int sum) {
+        if (root == null) {
+            return sum == 0;
+        }
+        return hasPathSum3(root.left, sum - root.val) || hasPathSum3(root.right, sum - root.val);
+    }
+
+    public boolean hasPathSum4(TreeNode root, int sum) {
+        if (root == null) {
+            return false;
+        }
+        Stack<Pair> stack = new Stack<>();
+        stack.push(new Pair(root, root.val));
+        while (!stack.isEmpty()) {
+            Pair peek = stack.pop();
+            TreeNode node = peek.node;
+            if (node.left == null && node.right == null) {
+                if (peek.curSum == sum) {
+                    return true;
+                }
+            }
+            if (node.right != null) {
+                stack.push(new Pair(node.right, peek.curSum + node.right.val));
+            }
+            if (node.left != null) {
+                stack.push(new Pair(node.left, peek.curSum + node.left.val));
+            }
+        }
+        return false;
+    }
+
+    class Pair {
+        TreeNode node;
+        int curSum;
+        public Pair(TreeNode node, int val) {
+            this.node = node;
+            this.curSum = val;
+        }
+    }
+
 }

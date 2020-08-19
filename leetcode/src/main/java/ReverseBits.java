@@ -32,4 +32,23 @@ public class ReverseBits {
         }
         return result;
     }
+
+    public int reverseBits3(int n) {
+        int result;
+        if (n % 2 == 0) {
+            result = 0;
+        } else {
+            result = -1;
+        }
+        n = n >>> 1;
+
+        for (int i = 1; i < 32; i++) {
+            result = result << 1;
+            if (n % 2 != 0) {
+                result += 1;
+            }
+            n = n >>> 1;
+        }
+        return result;
+    }
 }

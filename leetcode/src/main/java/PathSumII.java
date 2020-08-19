@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Stack;
 
 /**
  * Given a binary tree and a sum, find all root-to-leaf paths where each path's sum equals the given sum.
@@ -65,5 +66,32 @@ public class PathSumII {
             helper(node.right, path, result, left - node.val);
 
         path.remove(path.size() - 1);
+    }
+
+
+    public List<List<Integer>> pathSum3(TreeNode root, int sum) {
+        List<List<Integer>> result = new ArrayList<>();
+        if (root == null) {
+            return result;
+        }
+        Stack<Pair> stack = new Stack<>();
+        stack.push(new Pair(root, 1));
+        List<Integer> path = new ArrayList<>();
+        while (!stack.isEmpty()) {
+            Pair peek = stack.pop();
+            TreeNode node = peek.node;
+
+        }
+        return result;
+    }
+
+    class Pair {
+        TreeNode node;
+        int level;
+
+        public Pair(TreeNode node, int level) {
+            this.node = node;
+            this.level = level;
+        }
     }
 }

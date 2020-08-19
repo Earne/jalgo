@@ -18,8 +18,10 @@
  * since a node can be a descendant of itself according to the LCA definition.
  */
 public class LowestCommonAncestorofaBinaryTree {
+
+    private Boolean hasAns = false;
     public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
-        if (root == null)
+        if (hasAns || root == null)
             return null;
         if (root == p || root == q)
             return root;
@@ -27,8 +29,10 @@ public class LowestCommonAncestorofaBinaryTree {
         TreeNode left = lowestCommonAncestor(root.left, p, q);
         TreeNode right = lowestCommonAncestor(root.right, p, q);
 
-        if (left != null && right != null)
+        if (left != null && right != null) {
+            hasAns = true;
             return root;
+        }
 
         return left != null ? left : right;
     }

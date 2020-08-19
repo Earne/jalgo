@@ -25,4 +25,16 @@ public class TreeNode {
         System.out.print(node.val + " ");
         inOrderPrintTree(node.right);
     }
+
+    @Override
+    public String toString() {
+        String leftStr = "", rightStr = "";
+        if (left != null) {
+            leftStr = String.valueOf(left.val);
+        }
+        if (right != null) {
+            rightStr = String.valueOf(right.val);
+        }
+        return "[" + val + " <" + leftStr + "," + rightStr + ">]";
+    }
 }
