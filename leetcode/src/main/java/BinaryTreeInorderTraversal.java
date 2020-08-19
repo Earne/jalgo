@@ -1,3 +1,4 @@
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
@@ -36,5 +37,33 @@ public class BinaryTreeInorderTraversal {
         }
 
         return result;
+    }
+
+    public List<Integer> inorderTraversal2(TreeNode root) {
+        List<Integer> res = new ArrayList<>();
+        if (root == null) {
+            return res;
+        }
+        Stack<TreeNode> stack = new Stack<>();
+        stack.push(root);
+        TreeNode cur;
+        while (!stack.isEmpty()) {
+            cur = stack.peek();
+            if (cur.left != null) {
+                stack.push(cur.left);
+            } else {
+                while (!stack.isEmpty()) {
+                    if (stack.peek().right != null) {
+                        res.add(stack.peek().val);
+                        stack.push(stack.pop().right);
+                        break;
+                    } else {
+                        res.add(stack.pop().val);
+                    }
+                }
+            }
+        }
+
+        return res;
     }
 }

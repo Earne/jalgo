@@ -3,23 +3,24 @@ import java.util.List;
 import java.util.Stack;
 
 /**
-Given a binary tree, return the postorder traversal of its nodes' values.
-
-For example:
-Given binary tree {1,#,2,3},
-
-   1
-    \
-     2
-    /
-   3
-
-return [3,2,1].
-
-Note: Recursive solution is trivial, could you do it iteratively?
+ * Given a binary tree, return the postorder traversal of its nodes' values.
+ * <p>
+ * For example:
+ * Given binary tree {1,#,2,3},
+ * <p>
+ * 1
+ * \
+ * 2
+ * /
+ * 3
+ * <p>
+ * return [3,2,1].
+ * <p>
+ * Note: Recursive solution is trivial, could you do it iteratively?
  */
 public class BinaryTreePostorderTraversal {
     List<Integer> result = new ArrayList<Integer>();
+
     public List<Integer> postorderTraversal1(TreeNode root) {
         helper(root);
         return result;
@@ -66,5 +67,34 @@ public class BinaryTreePostorderTraversal {
             pre = cur;
         }
         return result;
+    }
+
+
+    private List<Integer> postorderTraversal2(TreeNode root) {
+        List<Integer> res = new ArrayList<>();
+        if (root == null) {
+            return res;
+        }
+        Stack<TreeNode> stack = new Stack<>();
+        stack.push(root);
+        TreeNode cur;
+        TreeNode pre = null;
+        boolean isPop = false;
+        while (!stack.isEmpty()) {
+            cur = stack.peek();
+            if (!isPop && stack.peek().left != null) {
+                stack.push(cur.left);
+            } else {
+                isPop = false;
+                if (stack.peek().right == null || cur.right == pre) {
+                    pre = stack.pop();
+                    res.add(pre.val);
+                    isPop = true;
+                } else {
+                    stack.push(stack.peek().right);
+                }
+            }
+        }
+        return res;
     }
 }

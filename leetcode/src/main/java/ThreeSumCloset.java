@@ -38,4 +38,34 @@ public class ThreeSumCloset {
 
         return res;
     }
+
+    public int threeSumClosest2(int[] nums, int target) {
+        if (nums == null || nums.length < 3) {
+            throw new IllegalArgumentException();
+        }
+
+        Arrays.sort(nums);
+
+        int diff = Integer.MAX_VALUE;
+        for (int i = 0; i < nums.length - 2; i++) {
+            int p = i + 1;
+            int q = nums.length - 1;
+            int tarRemain = target - nums[i];
+            while (p < q) {
+                int curRemain = nums[p] + nums[q];
+                if (curRemain == tarRemain) {
+                    return target;
+                }
+                if (Math.abs(curRemain - tarRemain) < Math.abs(diff)) {
+                    diff = curRemain - tarRemain;
+                }
+                if (curRemain < tarRemain) {
+                    p++;
+                } else {
+                    q--;
+                }
+            }
+        }
+        return target + diff;
+    }
 }

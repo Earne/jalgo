@@ -1,4 +1,6 @@
+import java.util.HashMap;
 import java.util.LinkedList;
+import java.util.PriorityQueue;
 import java.util.Queue;
 
 /**
@@ -43,6 +45,13 @@ import java.util.Queue;
  */
 public class CourseScheduleII {
     public int[] findOrder(int numCourses, int[][] prerequisites) {
+        PriorityQueue<NumFreqPos> heap = new PriorityQueue<>((a, b) -> {
+            if (a.freq != b.freq) {
+                return b.freq - a.freq;
+            } else {
+                return b.pos - a.pos;
+            }
+        });
         int[] result = new int[numCourses];
         int cur = 0;
         int[] inDegree = new int[numCourses];
@@ -69,5 +78,17 @@ public class CourseScheduleII {
         if (cur != numCourses)
             return new int[]{};
         return result;
+    }
+}
+
+class NumFreqPos {
+    int num;
+    int freq;
+    int pos;
+
+    public NumFreqPos(int num, int freq, int pos) {
+        this.num = num;
+        this.freq = freq;
+        this.pos = pos;
     }
 }

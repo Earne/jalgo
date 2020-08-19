@@ -25,4 +25,11 @@ public class TreeNode {
         System.out.print(node.val + " ");
         inOrderPrintTree(node.right);
     }
+
+    @Override
+    public String toString() {
+        String lStr = "<" + (left == null ? "N" : left.val) + ",";
+        String rStr = (right == null ? "N" : right.val) + ">";
+        return val + lStr + rStr ;
+    }
 }

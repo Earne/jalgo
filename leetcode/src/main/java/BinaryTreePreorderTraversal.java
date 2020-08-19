@@ -7,13 +7,13 @@ import java.util.Stack;
  * For example:
  * Given binary tree {1,#,2,3},
  * 1
- *  \
- *   2
- *  /
+ * \
+ * 2
+ * /
  * 3
- *
+ * <p>
  * return [1,2,3].
- *
+ * <p>
  * Note: Recursive solution is trivial, could you do it iteratively?
  */
 public class BinaryTreePreorderTraversal {
@@ -33,5 +33,28 @@ public class BinaryTreePreorderTraversal {
             }
         }
         return result;
+    }
+
+    public List<Integer> preorderTraversal2(TreeNode root) {
+        List<Integer> res = new ArrayList<>();
+        if (root == null) {
+            return res;
+        }
+        Stack<TreeNode> stack = new Stack<>();
+        stack.push(root);
+        TreeNode cur;
+        while (!stack.isEmpty()) {
+            cur = stack.pop();
+            res.add(cur.val);
+
+            if (cur.right != null) {
+                stack.push(cur.right);
+            }
+            if (cur.left != null) {
+                stack.push(cur.left);
+            }
+        }
+
+        return res;
     }
 }
