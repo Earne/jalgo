@@ -23,4 +23,14 @@ public class ListNode {
         }
     }
 
+    @Override
+    public String toString() {
+        ListNode head = this;
+        StringBuilder sb = new StringBuilder();
+        while (head != null) {
+            sb.append(head.val).append(",");
+            head = head.next;
+        }
+        return sb.toString();
+    }
 }

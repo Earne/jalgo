@@ -299,6 +299,87 @@ public class TreeTraversal {
         }
         return result;
     }
+
+    public List<Integer> postOrderIterNotNull(TreeNode root) {
+        List<Integer> result = new ArrayList<>();
+        if (root == null) {
+            return result;
+        }
+        Stack<TreeNode> stack = new Stack<>();
+        stack.push(root);
+        // 标记上一个出栈（即打印出来）的node
+        TreeNode pre = null;
+        // 标记上一个动作是true出栈（打印val）还是false入栈（刚刚加入了root， 因此是入栈 false）
+        boolean isPop = false;
+        while (!stack.isEmpty()) {
+            TreeNode peek = stack.peek();
+            // 上一个动作不是出栈，且peek的左非空，那么可以把左边入栈
+            if (!isPop && peek.left != null) {
+                stack.push(peek.left);
+            } else {
+                // 否则，要么上一个动作是出栈,或者peek的左是空。即 1 出栈 ； 2 左边是空；1 出栈又包括出栈点和当前点的关系
+                if (isPop) {
+                    if (peek.left == pre) {
+                        // 如果上一个动作是出栈，那么要看出栈的点和当前点的关系，如果是左子，那么可以将非空的右子入栈了
+                        if (peek.right != null) {
+                            stack.push(peek.right);
+                            isPop = false;
+                        } else {
+                            // 如果右子是空，那么当前可以出栈了
+                            isPop = true;
+                            pre = peek;
+                            result.add(stack.pop().val);
+                        }
+                    } else {
+                        // 再否则如果上个动作是出栈，但是不是左子（那么肯定是右子了），那么当前点也可以出栈了
+                        isPop = true;
+                        pre = peek;
+                        result.add(stack.pop().val);
+                    }
+                } else {
+                    // 到这里的一定是：  上个动作不是出栈，但peek的左是空，那么根据情况，将右边加入进来或者弹出peek
+                    if (peek.right != null) {
+                        stack.push(peek.right);
+                    } else {
+                        isPop = true;
+                        pre = peek;
+                        result.add(stack.pop().val);
+                    }
+                }
+            }
+        }
+
+        return result;
+    }
+
+
+    public List<Integer> postOrderIterOri(TreeNode root) {
+        List<Integer> result = new ArrayList<>();
+        if (root == null) {
+            return result;
+        }
+        Stack<TreeNode> stack = new Stack<>();
+        stack.push(root);
+        TreeNode peek;
+        TreeNode pre = null;
+        boolean isPop = false;
+        while (!stack.isEmpty()) {
+            peek = stack.peek();
+            if (!isPop && peek.left != null) {
+                stack.push(peek.left);
+            } else {
+                isPop = false;
+                if (peek.right == null || peek.right == pre) {
+                    pre = stack.pop();
+                    result.add(pre.val);
+                    isPop = true;
+                } else {
+                    stack.push(peek.right);
+                }
+            }
+        }
+        return result;
+    }
 }
 
 class Task {

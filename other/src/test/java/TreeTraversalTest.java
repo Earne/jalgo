@@ -86,4 +86,11 @@ public class TreeTraversalTest {
         assertEquals(aInOrder, traversal.inOrderIterNoNull(rootA));
         assertEquals(bInOrder, traversal.inOrderIterNoNull(rootB));
     }
+
+
+    @Test
+    public void 测试后序_非递归_不放入null模拟递归时堆栈的情况() {
+        assertEquals(aPostOrder, traversal.postOrderIterNotNull(rootA));
+        assertEquals(bPostOrder, traversal.postOrderIterNotNull(rootB));
+    }
 }
